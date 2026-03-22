@@ -2,7 +2,7 @@
  * Toucan Wireless Piantor keymap
  * Ported from zmk_chocofi corne.keymap (Dvorak + homerow mods)
  * Outer left col:  RCLK / LCLK / MCLK
- * Outer right col: VOL_UP / MUTE / VOL_DN
+ * Outer right col: SCRL_UP / MUTE / SCRL_DN  (base); VOL_UP / MUTE / VOL_DN (NUMS)
  */
 
 #include <behaviors.dtsi>
@@ -49,16 +49,16 @@
         base {
             display-name = "BASE";
 // ╭──────┬──────┬──────┬──────┬──────┬──────╮   ╭──────┬──────┬──────┬──────┬──────┬──────╮
-// │ RCLK │  '   │  ,   │  .   │  P   │  Y   │   │  F   │  G   │  C   │  R   │  L   │ VOLU │
+// │ RCLK │  '   │  ,   │  .   │  P   │  Y   │   │  F   │  G   │  C   │  R   │  L   │SCR↑  │
 // │ LCLK │ A/⌘  │ O/⌥  │ E/⌃  │ U/⇧  │  I   │   │  D   │ H/⇧  │ T/⌃  │ N/⌥  │ S/⌘  │ MUTE │
-// │ MCLK │  ;   │  Q   │  J   │  K   │  X   │   │  B   │  M   │  W   │  V   │  Z   │ VOLD │
+// │ MCLK │  ;   │  Q   │  J   │  K   │  X   │   │  B   │  M   │  W   │  V   │  Z   │SCR↓  │
 // ╰──────┴──────┴──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┴──────┴──────╯
 //                      │ES/TB │ SPC  │ NUMS │   │ SYMS │ ENT  │ BSPC │
 //                      ╰──────┴──────┴──────╯   ╰──────┴──────┴──────╯
             bindings = <
-   &mkp RCLK     &kp SQT      &kp COMMA    &kp DOT      &kp P        &kp Y      &kp F    &kp G        &kp C        &kp R        &kp L        &kp C_VOL_UP
+   &mkp RCLK     &kp SQT      &kp COMMA    &kp DOT      &kp P        &kp Y      &kp F    &kp G        &kp C        &kp R        &kp L        &msc SCRL_UP
    &mkp LCLK     &hm LGUI A   &hm LALT O   &hm LCTRL E  &hm LSHFT U  &kp I      &kp D    &hm RSHFT H  &hm RCTRL T  &hm RALT N   &hm RGUI S   &kp C_MUTE
-   &mkp MCLK     &kp SEMI     &kp Q        &kp J        &kp K        &kp X      &kp B    &kp M        &kp W        &kp V        &kp Z        &kp C_VOL_DN
+   &mkp MCLK     &kp SEMI     &kp Q        &kp J        &kp K        &kp X      &kp B    &kp M        &kp W        &kp V        &kp Z        &msc SCRL_DOWN
                                            &td_esc      &kp SPACE    &mo NUMS   &mo SYMS &kp RET      &kp BSPC
             >;
         };
@@ -66,16 +66,16 @@
         nums {
             display-name = "NUMS";
 // ╭──────┬──────┬──────┬──────┬──────┬──────╮   ╭──────┬──────┬──────┬──────┬──────┬──────╮
-// │      │  F1  │  F2  │  F3  │  F4  │      │   │ DEL  │  7   │  8   │  9   │ NUM  │      │
-// │      │ F5/⌘ │ F6/⌥ │ F7/⌃ │ F8/⇧ │      │   │ TAB  │ 4/⇧  │ 5/⌃  │ 6/⌥  │ ./⌘  │      │
-// │      │  F9  │  F10 │  F11 │  F12 │      │   │  0   │  1   │  2   │  3   │ ESC  │      │
+// │      │  F1  │  F2  │  F3  │  F4  │      │   │ DEL  │  7   │  8   │  9   │ NUM  │ VOLU │
+// │      │ F5/⌘ │ F6/⌥ │ F7/⌃ │ F8/⇧ │      │   │ TAB  │ 4/⇧  │ 5/⌃  │ 6/⌥  │ ./⌘  │ MUTE │
+// │      │  F9  │  F10 │  F11 │  F12 │      │   │  0   │  1   │  2   │  3   │ ESC  │ VOLD │
 // ╰──────┴──────┴──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┴──────┴──────╯
 //                      │      │ SPC  │      │   │      │ ENT  │ BSPC │
 //                      ╰──────┴──────┴──────╯   ╰──────┴──────┴──────╯
             bindings = <
-   &trans  &kp F1       &kp F2       &kp F3       &kp F4       &none      &kp DEL  &kp N7       &kp N8       &kp N9       &kp KP_NUM   &trans
-   &trans  &hm LGUI F5  &hm LALT F6  &hm LCTRL F7 &hm LSHFT F8 &none      &kp TAB  &hm RSHFT N4 &hm RCTRL N5 &hm RALT N6  &hm RGUI DOT &trans
-   &trans  &kp F9       &kp F10      &kp F11      &kp F12      &none      &kp N0   &kp N1       &kp N2       &kp N3       &kp ESC      &trans
+   &trans  &kp F1       &kp F2       &kp F3       &kp F4       &none      &kp DEL  &kp N7       &kp N8       &kp N9       &kp KP_NUM   &kp C_VOL_UP
+   &trans  &hm LGUI F5  &hm LALT F6  &hm LCTRL F7 &hm LSHFT F8 &none      &kp TAB  &hm RSHFT N4 &hm RCTRL N5 &hm RALT N6  &hm RGUI DOT &kp C_MUTE
+   &trans  &kp F9       &kp F10      &kp F11      &kp F12      &none      &kp N0   &kp N1       &kp N2       &kp N3       &kp ESC      &kp C_VOL_DN
                                      &trans       &kp SPACE    &trans     &trans   &kp RET      &kp BSPC
             >;
         };
