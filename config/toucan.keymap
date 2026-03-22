@@ -1,8 +1,8 @@
 /*
  * Toucan Wireless Piantor keymap
  * Ported from zmk_chocofi corne.keymap (Dvorak + homerow mods)
- * Outer left col:  VOL_UP / MUTE / VOL_DN
- * Outer right col: LCLK / RCLK / MCLK
+ * Outer left col:  RCLK / LCLK / MCLK
+ * Outer right col: VOL_UP / MUTE / VOL_DN
  */
 
 #include <behaviors.dtsi>
@@ -49,16 +49,16 @@
         base {
             display-name = "BASE";
 // ╭──────┬──────┬──────┬──────┬──────┬──────╮   ╭──────┬──────┬──────┬──────┬──────┬──────╮
-// │ VOLU │  '   │  ,   │  .   │  P   │  Y   │   │  F   │  G   │  C   │  R   │  L   │ RCLK │
-// │ MUTE │ A/⌘  │ O/⌥  │ E/⌃  │ U/⇧  │  I   │   │  D   │ H/⇧  │ T/⌃  │ N/⌥  │ S/⌘  │ LCLK │
-// │ VOLD │  ;   │  Q   │  J   │  K   │  X   │   │  B   │  M   │  W   │  V   │  Z   │ MCLK │
+// │ RCLK │  '   │  ,   │  .   │  P   │  Y   │   │  F   │  G   │  C   │  R   │  L   │ VOLU │
+// │ LCLK │ A/⌘  │ O/⌥  │ E/⌃  │ U/⇧  │  I   │   │  D   │ H/⇧  │ T/⌃  │ N/⌥  │ S/⌘  │ MUTE │
+// │ MCLK │  ;   │  Q   │  J   │  K   │  X   │   │  B   │  M   │  W   │  V   │  Z   │ VOLD │
 // ╰──────┴──────┴──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┴──────┴──────╯
 //                      │ES/TB │ SPC  │ NUMS │   │ SYMS │ ENT  │ BSPC │
 //                      ╰──────┴──────┴──────╯   ╰──────┴──────┴──────╯
             bindings = <
-   &kp C_VOL_UP  &kp SQT      &kp COMMA    &kp DOT      &kp P        &kp Y      &kp F    &kp G        &kp C        &kp R        &kp L        &mkp RCLK
-   &kp C_MUTE    &hm LGUI A   &hm LALT O   &hm LCTRL E  &hm LSHFT U  &kp I      &kp D    &hm RSHFT H  &hm RCTRL T  &hm RALT N   &hm RGUI S   &mkp LCLK
-   &kp C_VOL_DN  &kp SEMI     &kp Q        &kp J        &kp K        &kp X      &kp B    &kp M        &kp W        &kp V        &kp Z        &mkp MCLK
+   &mkp RCLK     &kp SQT      &kp COMMA    &kp DOT      &kp P        &kp Y      &kp F    &kp G        &kp C        &kp R        &kp L        &kp C_VOL_UP
+   &mkp LCLK     &hm LGUI A   &hm LALT O   &hm LCTRL E  &hm LSHFT U  &kp I      &kp D    &hm RSHFT H  &hm RCTRL T  &hm RALT N   &hm RGUI S   &kp C_MUTE
+   &mkp MCLK     &kp SEMI     &kp Q        &kp J        &kp K        &kp X      &kp B    &kp M        &kp W        &kp V        &kp Z        &kp C_VOL_DN
                                            &td_esc      &kp SPACE    &mo NUMS   &mo SYMS &kp RET      &kp BSPC
             >;
         };
